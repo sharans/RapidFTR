@@ -237,6 +237,13 @@ describe ChildrenController do
       assigns[:fields_name].should == names
     end
 
+    it "should define form section fields as search criteria in alphabetical order" do
+      names = ["gender", "age", "occupation"]
+      FormSection.should_receive(:all_child_field_names).and_return(names)
+      get(:advanced_search, :format => 'html')
+      assigns[:fields_name].should == names.sort
+    end
+
     it "should assign results" do
       children = []
       search = mock(:search, :search_field => "field", :search_value => 'value', :valid? => true);

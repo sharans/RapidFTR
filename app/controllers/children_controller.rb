@@ -156,7 +156,7 @@ class   ChildrenController < ApplicationController
   
   def advanced_search
     @page_name = "Advanced Child Search"
-    @fields_name = FormSection.all_child_field_names
+    @fields_name = FormSection.all_child_field_names.sort
     
     if params[:search_field] && params[:search_value]
       search = AdvancedSearch.new(params[:search_field], params[:search_value])    
